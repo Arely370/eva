@@ -1,0 +1,53 @@
+<!-- producto.component.html -->
+<div style="margin: 20px;">
+  <h1>Catálogo de Productos</h1>
+  
+  <!-- Formulario -->
+  <div>
+      <input type="hidden" [(ngModel)]="producto.id"> <!-- Campo oculto para ID -->
+      
+      <p>
+          Descripción: <input type="text" [(ngModel)]="producto.descripcion">
+      </p>
+      
+      <p>
+          Precio: <input type="number" [(ngModel)]="producto.precio">
+      </p>
+      
+      <p>
+          <button type="button" class="btn btn-primary" (click)="agregarProducto()">Agregar</button>
+      </p>
+      
+      <p>
+          <button type="button" class="btn btn-success" (click)="modificarProducto()">Modificar</button>
+      </p>
+  </div>
+
+  @if (productos.length > 0) {
+    <table class="table table-bordered" style="margin-top: 20px; width: 100%;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (producto of productos; track producto.id) {
+          <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>${{ producto.precio }}</td>
+            <td>
+              <button type="button" class="btn btn-warning" (click)="seleccionarProducto(producto)">Seleccionar</button>
+             
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <h3 style="text-align: center; color: red;">NO HAY PRODUCTOS</h3>
+  }
+</div>

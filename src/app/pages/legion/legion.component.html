@@ -1,0 +1,47 @@
+<div style="margin: 20px;">
+  <h1 style="color: red; text-align: center;">BIBLIOTECA "LA LEGION"</h1>
+
+  <div style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; width: 300px; margin: 0 auto; background-color: #f9f9f9;">
+    <form #legionForm="ngForm">
+      <input type="hidden" [(ngModel)]="legion.id" name="id">
+      <p>
+        Título: <input type="text" [(ngModel)]="legion.titulo" name="titulo" required>
+      </p>
+      <p>
+        Autor: <input type="text" [(ngModel)]="legion.autor" name="autor" required>
+      </p>
+      <p>
+        Precio: <input type="text" [(ngModel)]="legion.precio" name="precio" required>
+      </p>
+      <p style="text-align: center;">
+        <button type="button" class="btn btn-primary" (click)="agregarLegion()">Agregar</button>
+        <button type="button" class="btn btn-success" (click)="modificarLegion()">Modificar</button>
+        <button type="button" class="btn btn-secondary" (click)="limpiarCampos()">Limpiar</button>
+      </p>
+    </form>
+  </div>
+
+  <table class="table table-bordered" style="margin-top: 30px; width: 100%;">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (legion of legiones; track legion.id) {
+        <tr>
+          <td>{{ legion.titulo }}</td>
+          <td>{{ legion.autor }}</td>
+          <td>{{ legion.precio }}</td>
+          <td>
+            <button type="button" class="btn btn-warning" (click)="seleccionarLegion(legion)">Seleccionar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminarLegion(legion.id!)">Eliminar</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
