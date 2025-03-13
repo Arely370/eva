@@ -1,80 +1,56 @@
-<div style="margin: 20px;">
-    <h1>Catalogo de Libros</h1>
-
-    <h4>Alta de Libros</h4>
-
-    <div class="col-sm-4">
+<div style="margin: 20px; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+    <h1 style="color: #512EE5; text-align: center; font-weight: bold;">CATÁLOGO DE LIBROS</h1>
+  
+    <div style="border: 2px solid #ffffff; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); padding: 25px; width: 350px; margin: 0 auto; background-color: #C2B7D3;">
+      <form #libroForm="ngForm">
         <p>
-            <label>Titulo</label>
-            <input type="text" class="form-control" [(ngModel)]="libro.titulo" />
+          <label style="font-weight: bold; color: #3C364B;">Título:</label>
+          <input type="text" [(ngModel)]="libro.titulo" name="titulo" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
         </p>
-    </div>
-
-    <div class="col-sm-4">
         <p>
-            <label>Autor</label>
-            <input type="text" class="form-control" [(ngModel)]="libro.autor" />
+          <label style="font-weight: bold; color: #3C364B;">Autor:</label>
+          <input type="text" [(ngModel)]="libro.autor" name="autor" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
         </p>
-    </div>
-
-    <div class="col-sm-4">
         <p>
-            <label>Editorial</label>
-            <input type="text" class="form-control" [(ngModel)]="libro.editorial" />
+          <label style="font-weight: bold; color: #3C364B;">Editorial:</label>
+          <input type="text" [(ngModel)]="libro.editorial" name="editorial" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
         </p>
-    </div>
-
-    <div class="col-sm-4">
         <p>
-            <label>Año de Publicación</label>
-            <input type="text" class="form-control" [(ngModel)]="libro.anioPublicacion" />
+          <label style="font-weight: bold; color: #3C364B;">Año de Publicación:</label>
+          <input type="text" [(ngModel)]="libro.anioPublicacion" name="anioPublicacion" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
         </p>
+        <p style="text-align: center;">
+          <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#512EE5'" onmouseout="this.style.backgroundColor='#9F7BFB'" (click)="insertarLibro()">Insertar</button>
+          <button type="button" class="btn" style="background-color: #512EE5; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#9F7BFB'" onmouseout="this.style.backgroundColor='#512EE5'" (click)="updateLibro()">Actualizar</button>
+          <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#FFFFF2'; this.style.color='#3C364B'" onmouseout="this.style.backgroundColor='#3C364B'; this.style.color='white'" (click)="cleanLibro()">Limpiar</button>
+        </p>
+      </form>
     </div>
-    <p></p>
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <button type="button" class="btn btn-primary" (click)="this.insertarLibro()">Insertar</button>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-warning" (click)="this.updateLibro()">Actualizar</button>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger" (click)="this.deleteLibro()">Eliminar</button>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger" (click)="this.cleanLibro()">Limpiar Campos</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <hr />
-
-    <h4>Listado de libros</h4>
-    <table class="table">
-        <thead>
-            <th>Titulo</th>
-            <th>Autor</th>
-            <th>Editorial</th>
-            <th>Año de Publicación</th>
-            <th>Seleccionar</th>
-        </thead>
-        <tbody>
-            @for(libro of libros; track libro.id){
-                <tr>
-                    <td>{{ libro.titulo }}</td>
-                    <td>{{ libro.autor }}</td>
-                    <td>{{ libro.editorial }}</td>
-                    <td>{{ libro.anioPublicacion }}</td>
-                    <td>
-                        <button type="button" class="btn btn-success" (click)="selectLibro(libro)">Seleccionar</button>
-
-                    </td>
-                </tr>
-            }
-        </tbody>
+  
+    <table class="table table-bordered" style="margin-top: 30px; width: 100%; border: 2px solid #9F7BFB; background-color: #FFFFF2; border-radius: 10px; overflow: hidden; text-align: center;">
+      <thead style="background-color: #512EE5; color: white;">
+        <tr>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Editorial</th>
+          <th>Año de Publicación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (libro of libros; track libro.id) {
+          <tr style="border-bottom: 1px solid #9F7BFB; color: #3C364B;">
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.editorial }}</td>
+            <td>{{ libro.anioPublicacion }}</td>
+            <td>
+              <button type="button" class="btn" style="background-color: #9F7BFB; border: none; padding: 8px 12px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#512EE5'" onmouseout="this.style.backgroundColor='#9F7BFB'" (click)="selectLibro(libro)">Seleccionar</button>
+              <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 8px 12px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#FFFFF2'; this.style.color='#3C364B'" onmouseout="this.style.backgroundColor='#3C364B'; this.style.color='white'" (click)="deleteLibro()">Eliminar</button>
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
-
-</div>
+  </div>
+  

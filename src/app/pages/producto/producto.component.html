@@ -1,50 +1,48 @@
+<div style="margin: 20px; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+  <h1 style="color: #512EE5; text-align: center; font-weight: bold;">CATÁLOGO DE PRODUCTOS</h1>
 
-<div style="margin: 20px;">
-  <h1>Catálogo de Productos</h1>
-  
-  <div>
-      <p>ID:<input type="text" [(ngModel)]="producto.id"> </p>
-      
+  <div style="border: 2px solid #ffffff; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); padding: 25px; width: 350px; margin: 0 auto; background-color: #C2B7D3;">
+    <form #productoForm="ngForm">
       <p>
-          Descripción: <input type="text" [(ngModel)]="producto.descripcion">
+        <label style="font-weight: bold; color: #3C364B;">ID:</label>
+        <input type="text" [(ngModel)]="producto.id" name="id" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
       </p>
-      
       <p>
-          Precio: <input type="number" [(ngModel)]="producto.precio">
+        <label style="font-weight: bold; color: #3C364B;">Descripción:</label>
+        <input type="text" [(ngModel)]="producto.descripcion" name="descripcion" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
       </p>
-      
+      <p>
+        <label style="font-weight: bold; color: #3C364B;">Precio:</label>
+        <input type="number" [(ngModel)]="producto.precio" name="precio" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
+      </p>
       <p style="text-align: center;">
-        <button type="button" class="btn btn-primary" (click)="agregarProducto()">Agregar</button>
-        <button type="button" class="btn btn-success" (click)="modificarProducto()">Modificar</button>
-        <button type="button" class="btn btn-secondary" (click)="eliminarProducto(producto.id!)">eliminar</button>
-      </p>  
+        <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#512EE5'" onmouseout="this.style.backgroundColor='#9F7BFB'" (click)="agregarProducto()">Agregar</button>
+        <button type="button" class="btn" style="background-color: #512EE5; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#9F7BFB'" onmouseout="this.style.backgroundColor='#512EE5'" (click)="modificarProducto()">Modificar</button>
+        <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#FFFFF2'; this.style.color='#3C364B'" onmouseout="this.style.backgroundColor='#3C364B'; this.style.color='white'" (click)="eliminarProducto(producto.id!)">Eliminar</button>
+      </p>
+    </form>
   </div>
 
-  @if (productos.length > 0) {
-    <table class="table table-bordered" style="margin-top: 20px; width: 100%;">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Descripción</th>
-          <th>Precio</th>
-          <th>Acciones</th>
+  <table class="table table-bordered" style="margin-top: 30px; width: 100%; border: 2px solid #9F7BFB; background-color: #FFFFF2; border-radius: 10px; overflow: hidden; text-align: center;">
+    <thead style="background-color: #512EE5; color: white;">
+      <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (producto of productos; track producto.id) {
+        <tr style="border-bottom: 1px solid #9F7BFB; color: #3C364B;">
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>${{ producto.precio }}</td>
+          <td>
+            <button type="button" class="btn" style="background-color: #9F7BFB; border: none; padding: 8px 12px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#512EE5'" onmouseout="this.style.backgroundColor='#9F7BFB'" (click)="seleccionarProducto(producto)">Seleccionar</button>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        @for (producto of productos; track producto.id) {
-          <tr>
-            <td>{{ producto.id }}</td>
-            <td>{{ producto.descripcion }}</td>
-            <td>${{ producto.precio }}</td>
-            <td>
-              <button type="button" class="btn btn-warning" (click)="seleccionarProducto(producto)">Seleccionar</button>
-             
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  } @else {
-    <h3 style="text-align: center; color: red;">NO HAY PRODUCTOS</h3>
-  }
+      }
+    </tbody>
+  </table>
 </div>

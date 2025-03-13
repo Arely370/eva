@@ -1,28 +1,31 @@
-<div style="margin: 20px;">
-  <h1 style="color: red; text-align: center;">BIBLIOTECA "LA LEGION"</h1>
+<div style="margin: 20px; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+  <h1 style="color: #512EE5; text-align: center; font-weight: bold;"> BIBLIOTECA "LA LEGIÓN" </h1>
 
-  <div style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; width: 300px; margin: 0 auto; background-color: #f9f9f9;">
+  <div style="border: 2px solid #ffffff; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); padding: 25px; width: 350px; margin: 0 auto; background-color: #C2B7D3;">
     <form #legionForm="ngForm">
-      <p>ID:<input type="text" [(ngModel)]="legion.id" name="id"></p>
+      <p style="font-weight: bold; color: #3C364B;">ID:<input type="text" [(ngModel)]="legion.id" name="id" style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;"></p>
       <p>
-        Título: <input type="text" [(ngModel)]="legion.titulo" name="titulo" required>
+        <label style="font-weight: bold; color: #3C364B;">Título:</label>
+        <input type="text" [(ngModel)]="legion.titulo" name="titulo" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
       </p>
       <p>
-        Autor: <input type="text" [(ngModel)]="legion.autor" name="autor" required>
+        <label style="font-weight: bold; color: #3C364B;">Autor:</label>
+        <input type="text" [(ngModel)]="legion.autor" name="autor" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
       </p>
       <p>
-        Precio: <input type="text" [(ngModel)]="legion.precio" name="precio" required>
+        <label style="font-weight: bold; color: #3C364B;">Precio:</label>
+        <input type="text" [(ngModel)]="legion.precio" name="precio" required style="width: 100%; padding: 8px; border: 1px solid #512EE5; border-radius: 5px; background-color: #FFFFF2;">
       </p>
       <p style="text-align: center;">
-        <button type="button" class="btn btn-primary" (click)="agregarLegion()">Agregar</button>
-        <button type="button" class="btn btn-success" (click)="modificarLegion()">Modificar</button>
-        <button type="button" class="btn btn-secondary" (click)="limpiarCampos()">Limpiar</button>
+        <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#512EE5'" onmouseout="this.style.backgroundColor='#9F7BFB'" (click)="agregarLegion()">Agregar</button>
+        <button type="button" class="btn" style="background-color: #512EE5; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#9F7BFB'" onmouseout="this.style.backgroundColor='#512EE5'" (click)="modificarLegion()">Modificar</button>
+        <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 10px 15px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#FFFFF2'; this.style.color='#3C364B'" onmouseout="this.style.backgroundColor='#3C364B'; this.style.color='white'" (click)="limpiarCampos()">Limpiar</button>
       </p>
     </form>
   </div>
 
-  <table class="table table-bordered" style="margin-top: 30px; width: 100%;">
-    <thead>
+  <table class="table table-bordered" style="margin-top: 30px; width: 100%; border: 2px solid #9F7BFB; background-color: #FFFFF2; border-radius: 10px; overflow: hidden; text-align: center;">
+    <thead style="background-color: #512EE5; color: white;">
       <tr>
         <th>Título</th>
         <th>Autor</th>
@@ -32,13 +35,13 @@
     </thead>
     <tbody>
       @for (legion of legiones; track legion.id) {
-        <tr>
+        <tr style="border-bottom: 1px solid #9F7BFB; color: #3C364B;">
           <td>{{ legion.titulo }}</td>
           <td>{{ legion.autor }}</td>
           <td>{{ legion.precio }}</td>
           <td>
-            <button type="button" class="btn btn-warning" (click)="seleccionarLegion(legion)">Seleccionar</button>
-            <button type="button" class="btn btn-danger" (click)="eliminarLegion(legion.id!)">Eliminar</button>
+            <button type="button" class="btn" style="background-color: #9F7BFB; border: none; padding: 8px 12px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#512EE5'" onmouseout="this.style.backgroundColor='#9F7BFB'" (click)="seleccionarLegion(legion)">Seleccionar</button>
+            <button type="button" class="btn" style="background-color: #3C364B; border: none; padding: 8px 12px; border-radius: 5px; color: white; font-weight: bold; transition: 0.3s;" onmouseover="this.style.backgroundColor='#FCE1B5'; this.style.color='#3C364B'" onmouseout="this.style.backgroundColor='#3C364B'; this.style.color='white'" (click)="eliminarLegion(legion.id!)">Eliminar</button>
           </td>
         </tr>
       }
