@@ -15,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     {provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig},
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore()),   //Inicializando la pura base del firestore.
+    provideFirestore(() => getFirestore()),   
   ],
 };

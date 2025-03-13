@@ -1,10 +1,9 @@
-<!-- producto.component.html -->
+
 <div style="margin: 20px;">
   <h1>Catálogo de Productos</h1>
   
-  <!-- Formulario -->
   <div>
-      <input type="hidden" [(ngModel)]="producto.id"> <!-- Campo oculto para ID -->
+      <p>ID:<input type="text" [(ngModel)]="producto.id"> </p>
       
       <p>
           Descripción: <input type="text" [(ngModel)]="producto.descripcion">
@@ -14,13 +13,11 @@
           Precio: <input type="number" [(ngModel)]="producto.precio">
       </p>
       
-      <p>
-          <button type="button" class="btn btn-primary" (click)="agregarProducto()">Agregar</button>
-      </p>
-      
-      <p>
-          <button type="button" class="btn btn-success" (click)="modificarProducto()">Modificar</button>
-      </p>
+      <p style="text-align: center;">
+        <button type="button" class="btn btn-primary" (click)="agregarProducto()">Agregar</button>
+        <button type="button" class="btn btn-success" (click)="modificarProducto()">Modificar</button>
+        <button type="button" class="btn btn-secondary" (click)="eliminarProducto(producto.id!)">eliminar</button>
+      </p>  
   </div>
 
   @if (productos.length > 0) {
